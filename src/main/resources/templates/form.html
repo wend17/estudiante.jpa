@@ -7,51 +7,42 @@
 <body>
 <h1 th:text="${titulo}"></h1>
 
-<form th:action="@{/form}" th:object="${estudiante}">
- <div>
-     <label for="nombre">Nombre</label>
-     <input id="nombre" type="text" th:field="*{nombre}">
- </div>
+<form th:action="@{/form}" th:object="${estudiante}" method="post">
+    <div>
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" th:field="*{nombre}" th:errorclass="'form-control is-invalid'"/>
+        <small th:if="${#fields.hasErrors('nombre')}"th:errors="*{nombre}"></small>
+    </div>
     <div>
         <label for="apellido">Apellido</label>
-        <input id="apellido" type="text" th:field="*{apellido}">
+        <input id="apellido" type="text" th:field="*{apellido}"th:errorclass="'form-control is-invalid'"/>
+        <small th:if="${#fields.hasErrors('apellido')}"th:errors="*{apellido}"></small>
     </div>
     <div>
         <label for="email">Email</label>
-        <input id="email" th:type="text" th:field="*{email}">
+        <input id="email" type="email" th:field="*{email}" th:errorclass="'form-control is-invalid'"/>
+        <small th:if="${#fields.hasErrors('email')}"th:errors="*{email}"></small>
     </div>
     <div>
         <label for="grado">Grado</label>
-        <input id="grado" th:type="text" th:field="*{grado}">
+        <input id="grado" type="text" th:field="*{grado}"/>
     </div>
     <div>
         <label for="contacto">Contacto</label>
-        <input id="contacto" th:type="text" th:field="*{contacto}">
+        <input id="contacto" type="text" th:field="*{contacto}"/>
     </div>
     <div>
         <label for="fecha">Fecha</label>
-        <input id="fecha" th:type="text" th:field="*{createAt}">
+        <input id="fecha" type="text" th:field="*{createAt}" th:errorclass="'form-control is-invalid'"/>
+        <small th:if="${#fields.hasErrors('createAt')}"th:errors="*{createAt}"></small>
     </div>
+
     <div>
-        <label for=""></label>
-        <input>
+        <td><input type="submit" value="Crear estudiante"/></td>
     </div>
-    <div>
-        <label for=""></label>
-        <input>
-    </div>
-    <div>
-        <label for=""></label>
-        <input>
-    </div>
-    <div>
-        <label for=""></label>
-        <input>
-    </div>
-    <div>
-        <label for=""></label>
-        <input>
-    </div>
+
+    <input type="hidden" th:field="*{id}"/>
+
 </form>
 </body>
 </html>

@@ -6,17 +6,19 @@
 </head>
 <body>
 <h1 th:text="${titulo}"></h1>
-
+<a th:href="@{/form}">Crear formulario</a>
 <table>
     <thead>
     <tr>
-        <th>id</th>
-        <th>nombre</th>
-        <th>apellido</th>
-        <th>email</th>
-        <th>grado</th>
-        <th>fecha</th>
-        <th>contacto</th>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Grado</th>
+        <th>Contacto</th>
+        <th>Fecha</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
 
     </tr>
     </thead>
@@ -28,8 +30,11 @@
         <td th:text="${estudiante.apellido}"></td>
         <td th:text="${estudiante.email}"></td>
         <td th:text="${estudiante.grado}"></td>
-        <td th:text="${estudiante.createAt}"></td>
         <td th:text="${estudiante.contacto}"></td>
+        <td th:text="${#dates.format(estudiante.createAt,'dd/MM/yyyy')}"></td>
+        <td><a th:href="@{/form/{id}(id=${estudiante.id})}">editar</a></td>
+        <td><a th:href="@{/eliminar/{id}(id=${estudiante.id})}">eliminar</a></td>
+
     </tr>
     </tbody>
 </table>

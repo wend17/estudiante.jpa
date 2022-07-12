@@ -1,6 +1,11 @@
 package com.example.estudiantejpa.models.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,22 +14,25 @@ import java.util.Date;
 public class Estudiante implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
-    private  String nombre;
-    private  String apellido;
+    private Long id;
+    @NotEmpty
+    private String nombre;
+    @NotEmpty
+    private String apellido;
+
+    @Email
+    @NotEmpty
     private String email;
+
     private String grado;
+
     private String contacto;
+
+    @NotNull
     @Column(name = "fecha")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date createAt;
-
-    @ManyToOne
-    @JoinColumn(name="academia_id")
-    private Academia academia;
-    @ManyToOne
-    @JoinColumn(name = "distrito_id")
-    private Distrito estudiante;
 
     public Long getId() {
         return id;
@@ -66,14 +74,6 @@ public class Estudiante implements Serializable {
         this.grado = grado;
     }
 
-    public Date getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
-    }
-
     public String getContacto() {
         return contacto;
     }
@@ -82,20 +82,12 @@ public class Estudiante implements Serializable {
         this.contacto = contacto;
     }
 
-    public Academia getAcademia() {
-        return academia;
+    public Date getCreateAt() {
+        return createAt;
     }
 
-    public void setAcademia(Academia academia) {
-        this.academia = academia;
-    }
-
-    public Distrito getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(Distrito estudiante) {
-        this.estudiante = estudiante;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 }
 
