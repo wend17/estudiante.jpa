@@ -42,7 +42,15 @@
         <input id="fecha" type="text" th:field="*{createAt}" th:errorclass="'form-control is-invalid'"/>
         <small th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}"></small>
     </div>
-
+    <div>
+        <label for="academia" >Academia</label>
+        <select id="academia" th:field="*{academia.id}" class="form-control" >
+            <option th:each="item: ${academias}"
+                    th:value="${item.id}"
+                    th:text="${item.nombre}">
+            </option>
+        </select>
+    </div>
     <div>
         <td><input type="submit" value="Guardar dato"/></td>
     </div>

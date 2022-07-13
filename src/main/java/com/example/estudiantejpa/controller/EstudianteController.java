@@ -2,6 +2,7 @@ package com.example.estudiantejpa.controller;
 
 
 import com.example.estudiantejpa.models.entity.Estudiante;
+import com.example.estudiantejpa.service.AcademiaServiceImpl;
 import com.example.estudiantejpa.service.EstudianteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class EstudianteController {
     @Autowired
     private EstudianteServiceImpl estudianteService;
 
+    @Autowired
+    private AcademiaServiceImpl academiaService;
+
     @GetMapping("/listar")
     public String Listar(Model model) {
         model.addAttribute("titulo", "Lista De Estudiantes");
@@ -30,6 +34,7 @@ public class EstudianteController {
         Estudiante estudiante = new Estudiante();
         model.addAttribute("titulo", "Formulario de estudiantes");
         model.addAttribute("estudiante", estudiante);
+        model.addAttribute("academias",academiaService.findAll());
         return "form";
     }
 
@@ -37,6 +42,7 @@ public class EstudianteController {
     public String Guardar(@Valid Estudiante estudiante, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de estudiantes");
+            model.addAttribute("academias",academiaService.findAll());
             return "form";
         }
         estudianteService.save(estudiante);
@@ -54,6 +60,7 @@ public class EstudianteController {
         }
         model.addAttribute("titulo", "Editar cliente");
         model.addAttribute("estudiante", estudiante);
+        model.addAttribute("academias",academiaService.findAll());
         return "form";
     }
 

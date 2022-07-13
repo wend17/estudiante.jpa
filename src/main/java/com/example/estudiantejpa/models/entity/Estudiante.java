@@ -1,6 +1,7 @@
 package com.example.estudiantejpa.models.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -33,6 +34,10 @@ public class Estudiante implements Serializable {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date createAt;
+
+    @ManyToOne
+    @JoinColumn(name = "academia_id")
+    private Academia academia;
 
     public Long getId() {
         return id;
@@ -88,6 +93,14 @@ public class Estudiante implements Serializable {
 
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
+    }
+
+    public Academia getAcademia() {
+        return academia;
+    }
+
+    public void setAcademia(Academia academia) {
+        this.academia = academia;
     }
 }
 
