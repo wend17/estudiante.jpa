@@ -7,21 +7,27 @@
 <body>
 <h1 th:text="${titulo}"></h1>
 
+<div th:object="${estudiante}" th:remove="tag">
+    <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+        <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+    </ul>
+</div>
+
 <form th:action="@{/form}" th:object="${estudiante}" method="post">
     <div>
         <label for="nombre">Nombre</label>
         <input id="nombre" type="text" th:field="*{nombre}" th:errorclass="'form-control is-invalid'"/>
-        <small th:if="${#fields.hasErrors('nombre')}"th:errors="*{nombre}"></small>
+        <small th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
     </div>
     <div>
         <label for="apellido">Apellido</label>
-        <input id="apellido" type="text" th:field="*{apellido}"th:errorclass="'form-control is-invalid'"/>
-        <small th:if="${#fields.hasErrors('apellido')}"th:errors="*{apellido}"></small>
+        <input id="apellido" type="text" th:field="*{apellido}" th:errorclass="'form-control is-invalid'"/>
+        <small th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
     </div>
     <div>
         <label for="email">Email</label>
-        <input id="email" type="email" th:field="*{email}" th:errorclass="'form-control is-invalid'"/>
-        <small th:if="${#fields.hasErrors('email')}"th:errors="*{email}"></small>
+        <input id="email" type="text" th:field="*{email}" th:errorclass="'form-control is-invalid'"/>
+        <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
     </div>
     <div>
         <label for="grado">Grado</label>
@@ -34,12 +40,13 @@
     <div>
         <label for="fecha">Fecha</label>
         <input id="fecha" type="text" th:field="*{createAt}" th:errorclass="'form-control is-invalid'"/>
-        <small th:if="${#fields.hasErrors('createAt')}"th:errors="*{createAt}"></small>
+        <small th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}"></small>
     </div>
 
     <div>
-        <td><input type="submit" value="Crear estudiante"/></td>
+        <td><input type="submit" value="Guardar dato"/></td>
     </div>
+
 
     <input type="hidden" th:field="*{id}"/>
 

@@ -36,13 +36,12 @@ public class EstudianteController {
     @PostMapping("/form")
     public String Guardar(@Valid Estudiante estudiante, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            model.addAttribute("titulo","Formulario de estudiantes");
+            model.addAttribute("titulo", "Formulario de estudiantes");
             return "form";
         }
         estudianteService.save(estudiante);
         return "redirect:listar";
     }
-
 
 
     @GetMapping("/form/{id}")
@@ -57,12 +56,13 @@ public class EstudianteController {
         model.addAttribute("estudiante", estudiante);
         return "form";
     }
- @GetMapping("/eliminar/{id}")
-    public String delete (@PathVariable(value="id") Long id) {
-     if (id > 0) {
-         estudianteService.deleteById(id);
-     }
-     return "redirect:/listar";
- }
+
+    @GetMapping("/eliminar/{id}")
+    public String delete(@PathVariable(value = "id") Long id) {
+        if (id > 0) {
+            estudianteService.deleteById(id);
+        }
+        return "redirect:/listar";
+    }
 
 }
