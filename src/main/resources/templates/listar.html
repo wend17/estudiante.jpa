@@ -18,6 +18,7 @@
         <th>Contacto</th>
         <th>Fecha</th>
         <th>Academia</th>
+        <th>Distrito</th>
         <th>Editar</th>
         <th>Eliminar</th>
 
@@ -34,6 +35,7 @@
         <td th:text="${estudiante.contacto}"></td>
         <td th:text="${#dates.format(estudiante.createAt,'dd/MM/yyyy')}"></td>
         <td th:text="${estudiante?.academia?.nombre}"></td>
+        <td th:text="${estudiante?.distrito?.nombre}"></td>
         <td><a th:href="@{/form/{id}(id=${estudiante.id})}">editar</a></td>
         <td><a th:href="@{/eliminar/{id}(id=${estudiante.id})}">eliminar</a></td>
 

@@ -44,13 +44,24 @@
     </div>
     <div>
         <label for="academia" >Academia</label>
-        <select id="academia" th:field="*{academia.id}" class="form-control" >
+        <select id="academia" th:field="*{academia.id}" >
             <option th:each="item: ${academias}"
                     th:value="${item.id}"
                     th:text="${item.nombre}">
             </option>
         </select>
     </div>
+    <div>
+        <label for="distrito" >Distrito</label>
+        <select id="distrito" th:field="*{distrito.id}" >
+            <option th:each="item: ${distritos}"
+                    th:value="${item.id}"
+                    th:text="${item.nombre}">
+            </option>
+        </select>
+    </div>
+
+
     <div>
         <td><input type="submit" value="Guardar dato"/></td>
     </div>

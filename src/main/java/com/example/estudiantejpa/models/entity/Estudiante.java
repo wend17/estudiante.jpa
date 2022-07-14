@@ -39,6 +39,10 @@ public class Estudiante implements Serializable {
     @JoinColumn(name = "academia_id")
     private Academia academia;
 
+    @ManyToOne
+    @JoinColumn(name = "distrito_id")
+    private Distrito distrito;
+
     public Long getId() {
         return id;
     }
@@ -101,6 +105,14 @@ public class Estudiante implements Serializable {
 
     public void setAcademia(Academia academia) {
         this.academia = academia;
+    }
+
+    public Distrito getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(Distrito distrito) {
+        this.distrito = distrito;
     }
 }
 

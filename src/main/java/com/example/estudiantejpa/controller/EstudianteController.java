@@ -3,6 +3,7 @@ package com.example.estudiantejpa.controller;
 
 import com.example.estudiantejpa.models.entity.Estudiante;
 import com.example.estudiantejpa.service.AcademiaServiceImpl;
+import com.example.estudiantejpa.service.DistritoServiceImpl;
 import com.example.estudiantejpa.service.EstudianteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class EstudianteController {
     @Autowired
     private AcademiaServiceImpl academiaService;
 
+    @Autowired
+    private DistritoServiceImpl distritoService;
+
     @GetMapping("/listar")
     public String Listar(Model model) {
         model.addAttribute("titulo", "Lista De Estudiantes");
@@ -35,6 +39,7 @@ public class EstudianteController {
         model.addAttribute("titulo", "Formulario de estudiantes");
         model.addAttribute("estudiante", estudiante);
         model.addAttribute("academias",academiaService.findAll());
+        model.addAttribute("distritos",distritoService.findAll());
         return "form";
     }
 
@@ -43,6 +48,8 @@ public class EstudianteController {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de estudiantes");
             model.addAttribute("academias",academiaService.findAll());
+            model.addAttribute("distritos",distritoService.findAll());
+
             return "form";
         }
         estudianteService.save(estudiante);
@@ -61,6 +68,8 @@ public class EstudianteController {
         model.addAttribute("titulo", "Editar cliente");
         model.addAttribute("estudiante", estudiante);
         model.addAttribute("academias",academiaService.findAll());
+        model.addAttribute("distritos",distritoService.findAll());
+
         return "form";
     }
 
